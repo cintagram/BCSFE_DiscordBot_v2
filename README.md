@@ -8,8 +8,11 @@ The Most Advanced korean discord bot for bcsfe with vending system.
 
 ## 판매 관련
 이 봇을 자신이 셋업해서 호스팅해서 사용권을 파는건 OK
+
 이 봇을 사용하여 대리에딧/계정 판매해도 OK
+
 이 봇의 소스를 판매하는건 NO
+
 TRAIN 보고있니 명심해라^^
 
 ## 세팅법
