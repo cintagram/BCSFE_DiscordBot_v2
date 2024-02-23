@@ -1,0 +1,5 @@
+discord
+bcsfe-discord==2.7.60
+datetime
+numpy
+pandas
