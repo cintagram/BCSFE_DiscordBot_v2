@@ -2,7 +2,7 @@
 
 The Most Advanced korean discord bot for bcsfe with vending system.
 
-개발자 사칭, 도용, 판매(소스판매) 시 굿모닝YTN에 사체로 나올줄 아세요.
+개발자 사칭, 도용, 판매(소스판매) 하지마세요
 
 원래 펄스서비스에서 비공개로 개발중이었는데 공개개발로 하려고요.
 
