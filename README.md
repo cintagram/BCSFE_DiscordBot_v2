@@ -1,4 +1,4 @@
-# BCSFE_DiscordBot_v2 (개발중 WIP)
+# BCSFE_DiscordBot_v2 (개발중 미완성 WIP)
 
 The Most Advanced korean discord bot for bcsfe with vending system.
 
