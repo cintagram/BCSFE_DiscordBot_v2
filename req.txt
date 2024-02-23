@@ -1,5 +1,5 @@
-discord
-bcsfe-discord==2.7.60
+discord==2.3.2
+bcsfe-discord==2.7.62
 datetime
 numpy
 pandas
