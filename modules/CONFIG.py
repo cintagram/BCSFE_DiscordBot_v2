@@ -1,3 +1,3 @@
-token = "MTExMjcyMjc2ODkyNTAzNjY0NQ.GNACCB.YB_sHnoUsMnOlMhBDmbUTU5UFOOTwXjhGwIq18"
+token = ""
 
 botdev = 1080446576759148605
