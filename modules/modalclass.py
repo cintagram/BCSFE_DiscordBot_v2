@@ -57,7 +57,7 @@ class TCInputModal(ui.Modal):
             gv_input = ui.TextInput(
                   label="게임버전",
                   style=discord.TextStyle.short,
-                  placeholder="게임버전 | 예시: 13.0.0",
+                  placeholder="게임버전 | 예시: 13.1.1",
                   default=""
             )
             
@@ -83,7 +83,7 @@ class TCInputModal(ui.Modal):
                         with open(os.path.join(srvmemberpath(serverid, userid), "usrinfo.csv"), "w+", encoding="utf-8") as infowrite:
                               infowrite.write(makeinfo(userid))
                   now = datetime.datetime.now()
-                  savetime = str(now).split(".")[0].replace(":", "-").replace(" ", "-")
+                  savetime = str(now).split(".")[0].replace(":", "_").replace(" ", "_")
                   savefile = "SD_{}".format(savetime)
                   path = os.path.join(srvmemberpath(serverid, userid), savefile)
                   country_code = self.country
