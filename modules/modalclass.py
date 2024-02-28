@@ -99,6 +99,6 @@ class TCInputModal(ui.Modal):
                         await interaction.user.send("입력한 정보가 잘못되었습니다.")
                   elif save_stats != 0:
                         edits.save_management.save.save_save1(save_stats, path)
-                        await bcedit(interaction, save_stats, path)
+                        await saveedit.main_cb(interaction, save_stats, path)
             
       
