@@ -4,3 +4,5 @@ from . import (
 	saveedit,
 	addjson
 )
+
+__all__ = ["modalclass", "CONFIG", "saveedit", "addjson"]
