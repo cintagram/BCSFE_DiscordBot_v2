@@ -145,7 +145,7 @@ async def sendbtn(interaction:Interaction):
                 if set["NoticeWebhook"] != "undefined":
                   webhookobj = SyncWebhook.from_url(set["NoticeWebhook"])
                   embed1 = discord.Embed(title="💜 구매로그", description=f"{interaction.user.mention}님이 {price}{cashname}을(를) 사용하여 에딧하셨습니다! 💜")
-                  webhookobj.send(embed=embed1, username="GUI ERROR REPORT", avatar_url="https://i.imgur.com/8GnT3ZH.png")
+                  webhookobj.send(embed=embed1, username="BC EDITBOT v2", avatar_url="https://i.imgur.com/8GnT3ZH.png")
             typeselect = ui.Select(placeholder="메뉴를 선택해주세요.")
             typeselect.add_option(label="기종변경 코드로 시작", value="tc", description="기종변경 코드로 에딧을 시작합니다.")
             typeselect.add_option(label="기존 파일로 시작", value="lf", description="기존 파일로 에딧을 시작합니다.")
@@ -156,7 +156,6 @@ async def sendbtn(interaction:Interaction):
                 await loadfile_cb(interaction)
               elif typeselect.values[0] == "tc":
                 select = ui.Select(placeholder="국가 코드 선택")
-                
                 select.add_option(label="kr",value="kr",description="한국판")
                 select.add_option(label="en",value="en",description="영미판")
                 select.add_option(label="jp",value="jp",description="일본판")
