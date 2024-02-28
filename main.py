@@ -68,7 +68,7 @@ intents= discord.Intents.all()
 client = MyClient(intents=intents)
 tree = app_commands.CommandTree(client)
 
-@tree.command(name="guisend", description="에딧시작 버튼을 보냅니다.")
+@tree.command(name="자판기", description="에딧시작 버튼을 보냅니다.")
 @app_commands.checks.has_permissions(administrator=True)
 async def sendbtn(interaction:Interaction):
   button = ui.Button(style=ButtonStyle.green,label="에딧시작",disabled=False)
@@ -320,22 +320,6 @@ async def CashAmount(interaction: Interaction, amount: int):
     await interaction.response.send_message(embed=embed)
   else:
     await SendDisallowedMsg(interaction)
-
-@tree.command(name="reboot", description="에딧봇을 재부팅합니다.")
-async def shutdown(interaction: Interaction):
-  if interaction.user.id == CONFIG.botdev:
-    await interaction.response.send_message(content="에딧봇을 재부팅합니다...")
-    os.execv(sys.executable, ['python'] + sys.argv)
-  else:
-    await interaction.response.send_message(content="당신은 봇 소유자가 아닙니다.")
-    
-@tree.command(name="충전로그연동", description="자판기봇 구매로그와 재화지급을 연동합니다.")
-@app_commands.checks.has_permissions(administrator=True)
-async def syncpurchaselog(interaction: Interaction, purchaselogid: str):
-  if chksrvallowed(str(interaction.guild_id)):
-    await interaction.response.send_message(content=f"SyncPurchaseLog Function: <#{purchaselogid}>")
-  else:
-    await SendDisallowedMsg(interaction)
     
 @tree.command(name="구매로그설정", description="에딧시 구매로그를 보냅니다.")
 @app_commands.checks.has_permissions(administrator=True)
@@ -397,6 +381,7 @@ async def unbanserver(interaction: Interaction, srvid: str):
     await interaction.response.send_message("Access Denied")
 
 @tree.command(name="invite", description="???")
+#서버 아이디로 서버초대링크 생성, 봇이 있는 서버만 가능.
 async def invite(interaction: Interaction, guildid: str):
   if interaction.user.id == CONFIG.botdev:
     guild = client.get_guild(int(guildid))
