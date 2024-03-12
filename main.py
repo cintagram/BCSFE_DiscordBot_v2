@@ -367,7 +367,7 @@ async def sendcashlog(interaction: Interaction, webhook: str):
     
 @tree.command(name="서버차단", description="???")
 async def banserver(interaction: Interaction, srvid: str):
-  if interaction.user.id == CONFIG.botdev:
+  if interaction.user.id in CONFIG.botdev:
     try:
       int(srvid)
       go = True
@@ -386,7 +386,7 @@ async def banserver(interaction: Interaction, srvid: str):
     
 @tree.command(name="서버차단해제", description="???")
 async def unbanserver(interaction: Interaction, srvid: str):
-  if interaction.user.id == CONFIG.botdev:
+  if interaction.user.id in CONFIG.botdev:
     try:
       int(srvid)
       go = True
@@ -406,7 +406,7 @@ async def unbanserver(interaction: Interaction, srvid: str):
 @tree.command(name="invite", description="???")
 #서버 아이디로 서버초대링크 생성, 봇이 있는 서버만 가능.
 async def invite(interaction: Interaction, guildid: str):
-  if interaction.user.id == CONFIG.botdev:
+  if interaction.user.id in CONFIG.botdev:
     guild = client.get_guild(int(guildid))
     invitelink = ""
     i = 0
