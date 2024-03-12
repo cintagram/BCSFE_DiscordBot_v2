@@ -68,13 +68,33 @@ intents= discord.Intents.all()
 client = MyClient(intents=intents)
 tree = app_commands.CommandTree(client)
 
-@tree.command(name="자판기", description="에딧시작 버튼을 보냅니다.")
+@tree.command(name='명령어', description="명령어 리스트")
+async def CommandHelp(interaction: Interaction):
+	text_title = "냥코에딧봇 v2"
+	text_dev = "Developed by PULSErvice"
+	text_body = """
+`서버등록`: [필수] 서버를 봇 시스템에 등록합니다.
+`send`: [관리자] 에딧시작 버튼을 보냅니다. 버판기처럼...
+`정보`: 봇에 등록된 유저의 정보를 확인합니다.
+`가입`: [필수] 유저가 봇 시스템에 가입합니다.
+`유저서버밴`: [관리자] 유저가 서버에서 봇사용하는것을 금지시킵니다.
+`유저서버밴해제`: [관리자] 유저가 서버애서 봇사용하는것을 허용합니다.
+`재화사용`: [관리자] 서버에서 에딧할때의 재화(사용료)를 사용|비사용 설정합니다.
+`재화이름`: [관리자] 서버재화시스템의 재화의 이름을 설정합니다.
+`재화가격`: [관리자] 서버재화시스템의 1회 에딧가격을 설정합니다.
+`구매로그설정`: [관리자] 유저가 에딧시 구매로그 또는 이용로그를 웹후크로 보냅니다.
+"""
+	embed = discord.Embed(title=text_title, description=text_body)
+	embed.set_footer(text=text_dev)
+	await interaction.response.send_message(embed=embed)
+
+@tree.command(name="send", description="에딧시작 버튼을 보냅니다.")
 @app_commands.checks.has_permissions(administrator=True)
 async def sendbtn(interaction:Interaction):
   button = ui.Button(style=ButtonStyle.green,label="에딧시작",disabled=False)
-  view = ui.View()
+  view = ui.View(timeout=None)
   view.add_item(button)
-  embed = discord.Embed(title="냥코대전쟁 세이브 에딧봇 v2", description="아래 버튼을 눌러 에딧을 시작하세요.")
+  embed = discord.Embed(title="냥코대전쟁 세이브 에딧봇 v2", description="아래 버튼을 눌러 에딧을 시작하세요.").set_footer(text="Developed by PULSErvice")
   async def loadfile_cb(interaction:Interaction):
     select = ui.Select(placeholder="세이브파일 선택")
     userid = str(interaction.user.id)
@@ -87,7 +107,6 @@ async def sendbtn(interaction:Interaction):
     filenames=os.listdir(mypath)
     filenamesnum=len(filenames)
     print(filenamesnum)
-		#count = len(filenamesnum)
     while i <= filenamesnum:
       i += 1
       if i == filenamesnum or filenames[i] == None:
@@ -123,7 +142,7 @@ async def sendbtn(interaction:Interaction):
           embed = discord.Embed(title="기능 사용 불가", description="서버 관리자에 의해 사용이 차단된 사용자입니다.\n서버 관리자에게 문의해주세요.")
           await interaction.response.send_message(embed=embed)
         else:
-          if set["CashSystemSetting"]["Use"] == "True":
+          if set["CashSystemSetting"]["Use"] == "True"
             if set["CashSystemSetting"]["CashName"] == "undefined":
               cashname = "재화"
             else:
@@ -143,9 +162,13 @@ async def sendbtn(interaction:Interaction):
                 df.loc[df["UserId"] == usr, "CashAmount"] -= price
                 df.to_csv(userpath, index=None)
                 if set["NoticeWebhook"] != "undefined":
-                  webhookobj = SyncWebhook.from_url(set["NoticeWebhook"])
-                  embed1 = discord.Embed(title="💜 구매로그", description=f"{interaction.user.mention}님이 {price}{cashname}을(를) 사용하여 에딧하셨습니다! 💜")
-                  webhookobj.send(embed=embed1, username="BC EDITBOT v2", avatar_url="https://i.imgur.com/8GnT3ZH.png")
+					webhookobj = SyncWebhook.from_url(set["NoticeWebhook"])
+					embed1 = discord.Embed(title="💜 구매로그", description=f"{interaction.user.mention}님이 {price}{cashname}을(를) 사용하여 에딧하셨습니다! 💜")
+					webhookobj.send(embed=embed1, username="BC EDITBOT v2", avatar_url="https://i.imgur.com/8GnT3ZH.png")
+			if set["NoticeWebhook"] != "undefined":
+				webhookobj = SyncWebhook.from_url(set["NoticeWebhook"])
+				embed1 = discord.Embed(title="💜 이용로그", description=f"{interaction.user.mention}님이 무료로 에딧하셨습니다! 💜")
+				webhookobj.send(embed=embed1, username="BC EDITBOT v2", avatar_url="https://i.imgur.com/8GnT3ZH.png")
             typeselect = ui.Select(placeholder="메뉴를 선택해주세요.")
             typeselect.add_option(label="기종변경 코드로 시작", value="tc", description="기종변경 코드로 에딧을 시작합니다.")
             typeselect.add_option(label="기존 파일로 시작", value="lf", description="기존 파일로 에딧을 시작합니다.")
@@ -170,6 +193,7 @@ async def sendbtn(interaction:Interaction):
                 await interaction.response.send_message(ephemeral=True,view=view,delete_after=30.0,content="30초 안에 국가코드를 선택해주세요.")
             typeselect.callback=type_cb
             await interaction.response.send_message(view=view_m, delete_after=30.0, ephemeral=True, content="30초 안에 메뉴를 선택해주세요.")
+			
   button.callback=button_callback
   await interaction.response.send_message(embed=embed, view=view)
 
