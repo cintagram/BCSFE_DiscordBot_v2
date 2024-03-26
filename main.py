@@ -419,4 +419,25 @@ async def invite(interaction: Interaction, guildid: str):
   else:
     await interaction.response.send_message("Access Denied")
 
+@tree.command(name="냥코검색", description="냥코 아이디검색")
+async def CatSearchCommand(interaction: Interaction, usr_input: str):
+	catdb = open("catdb.csv", "r", encoding="utf-8").read().split("\n")
+	line_len = len(catdb)
+	ctx = []
+	for i in range(line_len-1):
+		catname = str(catdb[i]).split(",")[0]
+		catid = str(catdb[i]).split(",")[1]
+		if usr_input in catname:
+			ctx.append(str(catname)+": "+str(catid)+"\n")
+		else:
+			pass
+	if len(ctx) == 0:
+		embed_body = "검색결과가 없습니다"
+	else:
+		embed_body = ""
+		for k in range(len(ctx)):
+			embed_body += ctx[k]
+	embed = discord.Embed(title="검색결과", description=embed_body)
+	await interaction.response.send_message(embed=embed)
+
 client.run(CONFIG.token)
