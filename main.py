@@ -74,7 +74,7 @@ async def CommandHelp(interaction: Interaction):
 	text_dev = "Developed by PULSErvice"
 	text_body = """
 `서버등록`: [필수] 서버를 봇 시스템에 등록합니다.
-`send`: [관리자] 에딧시작 버튼을 보냅니다. 버판기처럼...
+`sendb`: [관리자] 에딧시작 버튼을 보냅니다. 버판기처럼 사용합니다.
 `정보`: 봇에 등록된 유저의 정보를 확인합니다.
 `가입`: [필수] 유저가 봇 시스템에 가입합니다.
 `유저서버밴`: [관리자] 유저가 서버에서 봇사용하는것을 금지시킵니다.
@@ -88,7 +88,7 @@ async def CommandHelp(interaction: Interaction):
 	embed.set_footer(text=text_dev)
 	await interaction.response.send_message(embed=embed)
 
-@tree.command(name="send", description="에딧시작 버튼을 보냅니다.")
+@tree.command(name="sendb", description="에딧시작 버튼을 보냅니다.")
 @app_commands.checks.has_permissions(administrator=True)
 async def sendbtn(interaction:Interaction):
   button = ui.Button(style=ButtonStyle.green,label="에딧시작",disabled=False)
@@ -111,6 +111,8 @@ async def sendbtn(interaction:Interaction):
       i += 1
       if i == filenamesnum or filenames[i] == None:
         print("i is None")
+		text1 = "현재 서버에서 저장한 세이브파일이 없습니다."
+		select.add_option(label=text1, value=str(i+1), description="기능사용불가")
         break
       else:
         if not filenames[i] == "userdata.csv":
@@ -165,10 +167,6 @@ async def sendbtn(interaction:Interaction):
 					webhookobj = SyncWebhook.from_url(set["NoticeWebhook"])
 					embed1 = discord.Embed(title="💜 구매로그", description=f"{interaction.user.mention}님이 {price}{cashname}을(를) 사용하여 에딧하셨습니다! 💜")
 					webhookobj.send(embed=embed1, username="BC EDITBOT v2", avatar_url="https://i.imgur.com/8GnT3ZH.png")
-			if set["NoticeWebhook"] != "undefined":
-				webhookobj = SyncWebhook.from_url(set["NoticeWebhook"])
-				embed1 = discord.Embed(title="💜 이용로그", description=f"{interaction.user.mention}님이 무료로 에딧하셨습니다! 💜")
-				webhookobj.send(embed=embed1, username="BC EDITBOT v2", avatar_url="https://i.imgur.com/8GnT3ZH.png")
             typeselect = ui.Select(placeholder="메뉴를 선택해주세요.")
             typeselect.add_option(label="기종변경 코드로 시작", value="tc", description="기종변경 코드로 에딧을 시작합니다.")
             typeselect.add_option(label="기존 파일로 시작", value="lf", description="기존 파일로 에딧을 시작합니다.")
@@ -203,7 +201,14 @@ async def userinfosend(interaction: Interaction, usr: discord.User):
   memid = str(usr.id)
   if os.path.exists(srvmemberpath(srvid, memid)):
     csvpath = os.path.join(srvmemberpath(srvid, memid), "userdata.csv")
-    data = open(csvpath, "r", encoding="utf-8").read()
+	df = pd.read_csv(csvpath, sep=",", encoding="utf-8")
+	cash = str(df["CashAmount"].values[0])
+	banned = str(d["IsBanned"].values[0])
+	data = f"""
+유저아이디: {memid}
+재화: {cash}
+서버봇 사용금지: {banned}
+ """
     embed = discord.Embed(title="서버 유저정보입니다.", description=data)
   else:
     embed = discord.Embed(title="서버DB에 가입되지 않은 유저입니다.")
