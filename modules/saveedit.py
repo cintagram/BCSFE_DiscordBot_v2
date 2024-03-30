@@ -5,6 +5,7 @@ from discord import app_commands,Interaction,ui,ButtonStyle,SelectOption
 import json
 import datetime
 import os
+from saveedit_modals import ItemInputModal_Single
 import sys
 import BCSFE_Python_Discord as BCSFE_Python
 from BCSFE_Python_Discord import *
@@ -46,7 +47,9 @@ async def main_cb(interaction: Interaction, save_stats, path):
 			view1.add_item(select1)
 			
 			async def itemshit(interaction: Interaction):
-				save_stats["catfood"]["Value"] = 2101 #test
+				if select1.values[0] == "catfood":
+					await interaction.response.send_modal(ItemInputModal_Single("통조림", save_stats["cat_food"]["Value"], 45000)
+				#save_stats["catfood"]["Value"] = 2101 test
 				await itemmsg.edit(content=f"통조림 2101개 테스트")
 			
 			select1.callback=itemshit
