@@ -20,5 +20,6 @@ class ItemInputModal_Single(ui.Modal):
         super().__init__(title="값 입력")
 
 	async def on_submit(self, interaction: Interaction):
-		saveeditapi.CatFoodEdit(self.sv, self.inputvalue.value)
+		self.sv = saveeditapi.CatFoodEdit(self.sv, self.inputvalue.value)
 		await interaction.user.send(content=f"Set CF to {self.inputvalue.value}")
+		return self.sv
