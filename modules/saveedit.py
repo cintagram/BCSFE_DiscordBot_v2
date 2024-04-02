@@ -26,7 +26,7 @@ async def main_cb(interaction: Interaction, save_stats, path):
 			select1.add_option(label="세이브 저장 및 업로드", value="savenupload", description="세이브를 저장 후 업로드합니다.")
 			view1 = ui.View(timeout=60.0)
 			view1.add_item(select1)
-			await interaction.user.send(content="1분 안에 메뉴를 선택하세요.", view=view1)
+			#await interaction.user.send(content="1분 안에 메뉴를 선택하세요.", view=view1)
 			async def savemanage(interaction: Interaction):
 				edits.save_management.save.save_save1(save_stats, path)
 				save_data = BCSFE_Python.serialise_save.start_serialize(save_stats)
@@ -39,16 +39,16 @@ async def main_cb(interaction: Interaction, save_stats, path):
 				await interaction.user.send(content=f"기종변경 코드: {transfer_code}\n인증번호: {confirmation_code}\n이용해주셔서 감사합니다.")
 			
 			select1.callback=savemanage
-			savemanagemsg = await mainmenumsg.edit(view=view1)
+			savemanagemsg = await interaction.user.send(view=view1)
 		elif select.values[0] == "item":
 			select1 = ui.Select(placeholder="아이템 메뉴 선택")
 			select1.add_option(label="통조림", value="catfood", description="통조림")
 			view1 = ui.View(timeout=300.0)
 			view1.add_item(select1)
-			await interaction.user.send(content="메뉴를 선택하세요.", view=view1)
+			#await interaction.user.send(content="메뉴를 선택하세요.", view=view1)
 			async def itemshit(interaction: Interaction):
 				if select1.values[0] == "catfood":
-					await interaction.response.send_modal(ItemInputModal_Single("통조림", save_stats, 45000))
+					await interaction.response.send_modal(modal=ItemInputModal_Single("통조림", save_stats, 45000))
 				#save_stats["catfood"]["Value"] = 2101 test
 				#await itemmsg.edit(content=f"통조림 테스트")
 			
