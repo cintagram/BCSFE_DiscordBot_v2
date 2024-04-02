@@ -10,7 +10,7 @@ import numpy
 import pandas as pd
 import csv
 from os import walk
-from modules import CONFIG, addjson
+from modules import *
 from modules.modalclass import TCInputModal, loadsave, makeinfo
 
 class CashUse(Enum):
@@ -107,20 +107,25 @@ async def sendbtn(interaction:Interaction):
     filenames=os.listdir(mypath)
     filenamesnum=len(filenames)
     print(filenamesnum)
+    k = False
     while i <= filenamesnum:
       i += 1
       if i == filenamesnum or filenames[i] == None:
         print("i is None")
-		text1 = "현재 서버에서 저장한 세이브파일이 없습니다."
-		select.add_option(label=text1, value=str(i+1), description="기능사용불가")
+        text1 = "현재 서버에서 저장한 세이브파일이 없습니다."
+        select.add_option(label=text1, value=str(i+1), description="기능사용불가")
         break
       else:
         if not filenames[i] == "userdata.csv":
           text1 = str(i+1) + ". " + filenames[i] + "\n"
+          k = True
           select.add_option(label=text1, value=str(i+1), description="세이브 파일입니다.")
     view = ui.View()
     view.add_item(select)
-    await interaction.response.send_message(ephemeral=True, view=view, delete_after=120.0, content="2분 안에 파일을 선택해주세요.")
+    if k:
+    	await interaction.response.send_message(ephemeral=True, view=view, delete_after=120.0, content="2분 안에 파일을 선택해주세요.")
+    else:
+      await interaction.response.send_message(ephemeral=True, content=text1, delete_after=30.0)
     async def loadfile_select_cb(interaction:Interaction):
       filenum = int(select.values[0])
       selectedfile = filenames[filenum-1]
@@ -144,7 +149,7 @@ async def sendbtn(interaction:Interaction):
           embed = discord.Embed(title="기능 사용 불가", description="서버 관리자에 의해 사용이 차단된 사용자입니다.\n서버 관리자에게 문의해주세요.")
           await interaction.response.send_message(embed=embed)
         else:
-          if set["CashSystemSetting"]["Use"] == "True"
+          if set["CashSystemSetting"]["Use"] == "True":
             if set["CashSystemSetting"]["CashName"] == "undefined":
               cashname = "재화"
             else:
@@ -164,9 +169,9 @@ async def sendbtn(interaction:Interaction):
                 df.loc[df["UserId"] == usr, "CashAmount"] -= price
                 df.to_csv(userpath, index=None)
                 if set["NoticeWebhook"] != "undefined":
-					webhookobj = SyncWebhook.from_url(set["NoticeWebhook"])
-					embed1 = discord.Embed(title="💜 구매로그", description=f"{interaction.user.mention}님이 {price}{cashname}을(를) 사용하여 에딧하셨습니다! 💜")
-					webhookobj.send(embed=embed1, username="BC EDITBOT v2", avatar_url="https://i.imgur.com/8GnT3ZH.png")
+                	webhookobj = SyncWebhook.from_url(set["NoticeWebhook"])
+                	embed1 = discord.Embed(title="💜 구매로그", description=f"{interaction.user.mention}님이 {price}{cashname}을(를) 사용하여 에딧하셨습니다! 💜")
+                	webhookobj.send(embed=embed1, username="BC EDITBOT v2", avatar_url="https://i.imgur.com/8GnT3ZH.png")
             typeselect = ui.Select(placeholder="메뉴를 선택해주세요.")
             typeselect.add_option(label="기종변경 코드로 시작", value="tc", description="기종변경 코드로 에딧을 시작합니다.")
             typeselect.add_option(label="기존 파일로 시작", value="lf", description="기존 파일로 에딧을 시작합니다.")
@@ -201,10 +206,10 @@ async def userinfosend(interaction: Interaction, usr: discord.User):
   memid = str(usr.id)
   if os.path.exists(srvmemberpath(srvid, memid)):
     csvpath = os.path.join(srvmemberpath(srvid, memid), "userdata.csv")
-	df = pd.read_csv(csvpath, sep=",", encoding="utf-8")
-	cash = str(df["CashAmount"].values[0])
-	banned = str(d["IsBanned"].values[0])
-	data = f"""
+    df = pd.read_csv(csvpath, sep=",", encoding="utf-8")
+    cash = str(df["CashAmount"].values[0])
+    banned = str(df["IsBanned"].values[0])
+    data = f"""
 유저아이디: {memid}
 재화: {cash}
 서버봇 사용금지: {banned}

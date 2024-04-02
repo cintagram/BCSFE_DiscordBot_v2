@@ -1,0 +1,204 @@
+[2024-04-02 01:51:19] [INFO    ] discord.client: logging in using static token
+[2024-04-02 01:51:20] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: c5f2db83879d8b93f779feb445f13dc7).
+[2024-04-02 02:07:17] [INFO    ] discord.client: logging in using static token
+[2024-04-02 02:07:18] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 0ebd01e02deedf40759b68d4668a4e92).
+[2024-04-02 02:09:41] [ERROR   ] discord.ui.view: Ignoring exception in view <View timeout=180.0 children=1> for item <Select placeholder='아이템 메뉴 선택' min_values=1 max_values=1 disabled=False options=[<SelectOption label='통조림' value='catfood' description='통조림' emoji=None default=False>]>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/discord/ui/view.py", line 427, in _scheduled_task
+    await item.callback(interaction)
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 51, in itemshit
+    await interaction.response.send_modal(ItemInputModal_Single("통조림", save_stats["cat_food"]["Value"], 45000))
+TypeError: ItemInputModal_Single.__init__() missing 1 required positional argument: 'save_stats'
+[2024-04-02 02:12:47] [INFO    ] discord.client: logging in using static token
+[2024-04-02 02:12:48] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: 70bbc422ddddbdfec3c8d934cdbf44ce).
+[2024-04-02 02:13:16] [ERROR   ] discord.ui.view: Ignoring exception in view <View timeout=180.0 children=1> for item <Select placeholder='아이템 메뉴 선택' min_values=1 max_values=1 disabled=False options=[<SelectOption label='통조림' value='catfood' description='통조림' emoji=None default=False>]>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/discord/ui/view.py", line 427, in _scheduled_task
+    await item.callback(interaction)
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 51, in itemshit
+    await interaction.response.send_modal(ItemInputModal_Single("통조림", save_stats["cat_food"]["Value"], 45000))
+TypeError: ItemInputModal_Single.__init__() missing 1 required positional argument: 'save_stats'
+[2024-04-02 02:13:22] [ERROR   ] discord.ui.view: Ignoring exception in view <View timeout=180.0 children=1> for item <Select placeholder='아이템 메뉴 선택' min_values=1 max_values=1 disabled=False options=[<SelectOption label='통조림' value='catfood' description='통조림' emoji=None default=False>]>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/discord/ui/view.py", line 427, in _scheduled_task
+    await item.callback(interaction)
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 51, in itemshit
+    await interaction.response.send_modal(ItemInputModal_Single("통조림", save_stats["cat_food"]["Value"], 45000))
+TypeError: ItemInputModal_Single.__init__() missing 1 required positional argument: 'save_stats'
+[2024-04-02 02:29:37] [ERROR   ] discord.ui.view: Ignoring exception in view <View timeout=None children=1> for item <Button style=<ButtonStyle.success: 3> url=None disabled=False label='에딧시작' emoji=None row=None>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/discord/ui/view.py", line 427, in _scheduled_task
+    await item.callback(interaction)
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 137, in button_callback
+    set = loadsrvset(str(interaction.guild_id))
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 43, in loadsrvset
+    return setobj[srvid]
+KeyError: '1217059952397520946'
+[2024-04-02 02:29:41] [ERROR   ] discord.ui.view: Ignoring exception in view <View timeout=None children=1> for item <Button style=<ButtonStyle.success: 3> url=None disabled=False label='에딧시작' emoji=None row=None>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/discord/ui/view.py", line 427, in _scheduled_task
+    await item.callback(interaction)
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 137, in button_callback
+    set = loadsrvset(str(interaction.guild_id))
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 43, in loadsrvset
+    return setobj[srvid]
+KeyError: '1217059952397520946'
+[2024-04-02 02:29:54] [ERROR   ] discord.app_commands.tree: Ignoring exception in command '가입'
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/discord/app_commands/commands.py", line 828, in _do_call
+    return await self._callback(interaction, **params)  # type: ignore
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 227, in RegisterMem
+    os.mkdir(srvmemberpath(srvid, memid))
+FileNotFoundError: [Errno 2] No such file or directory: '/home/pulse37/BCSFE_DiscordBot_v2/bc_saves/servers/1217059952397520946/974311959514214401'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/discord/app_commands/tree.py", line 1248, in _call
+    await command._invoke_with_namespace(interaction, namespace)
+  File "/usr/local/lib/python3.10/site-packages/discord/app_commands/commands.py", line 853, in _invoke_with_namespace
+    return await self._do_call(interaction, transformed_values)
+  File "/usr/local/lib/python3.10/site-packages/discord/app_commands/commands.py", line 846, in _do_call
+    raise CommandInvokeError(self, e) from e
+discord.app_commands.errors.CommandInvokeError: Command '가입' raised an exception: FileNotFoundError: [Errno 2] No such file or directory: '/home/pulse37/BCSFE_DiscordBot_v2/bc_saves/servers/1217059952397520946/974311959514214401'
+Traceback (most recent call last):
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 13, in <module>
+    from modules import *
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/__init__.py", line 1, in <module>
+    from . import (
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/modalclass.py", line 9, in <module>
+    from . import saveedit
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 8, in <module>
+    from .saveedit_modals import ItemInputModal_Single
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit_modals.py", line 21
+    label=f"{self.itemname} 값 입력", style=discord.TextStyle.short, placeholder=f"현재값: {self.cv["cat_food"]["Value"]} | 최댓값: {self.mv}", default="")
+                                                                                                           ^^^^^^^^
+SyntaxError: f-string: unmatched '['
+Traceback (most recent call last):
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 13, in <module>
+    from modules import *
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/__init__.py", line 1, in <module>
+    from . import (
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/modalclass.py", line 9, in <module>
+    from . import saveedit
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 8, in <module>
+    from .saveedit_modals import ItemInputModal_Single
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit_modals.py", line 20
+    self.inputvalue = ui.TextInput(label=f"{self.itemname} 값 입력", style=discord.TextStyle.short, placeholder=f"현재값: {self.cv["cat_food"]["Value"]} | 최댓값: {self.mv}", default="")
+                                                                                                                                          ^^^^^^^^
+SyntaxError: f-string: unmatched '['
+[2024-04-02 03:09:22] [INFO    ] discord.client: logging in using static token
+[2024-04-02 03:09:23] [INFO    ] discord.gateway: Shard ID None has connected to Gateway (Session ID: b6ff77790ae59f4f3339770a6fd9159e).
+[2024-04-02 03:09:56] [ERROR   ] discord.ui.view: Ignoring exception in view <View timeout=300.0 children=1> for item <Select placeholder='아이템 메뉴 선택' min_values=1 max_values=1 disabled=False options=[<SelectOption label='통조림' value='catfood' description='통조림' emoji=None default=False>]>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/discord/ui/view.py", line 427, in _scheduled_task
+    await item.callback(interaction)
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 51, in itemshit
+    await interaction.response.send_modal(ItemInputModal_Single("통조림", save_stats, 45000))
+TypeError: ItemInputModal_Single.__init__() missing 1 required positional argument: 'save_stats'
+[2024-04-02 03:10:01] [ERROR   ] discord.ui.view: Ignoring exception in view <View timeout=300.0 children=1> for item <Select placeholder='아이템 메뉴 선택' min_values=1 max_values=1 disabled=False options=[<SelectOption label='통조림' value='catfood' description='통조림' emoji=None default=False>]>
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/discord/ui/view.py", line 427, in _scheduled_task
+    await item.callback(interaction)
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 51, in itemshit
+    await interaction.response.send_modal(ItemInputModal_Single("통조림", save_stats, 45000))
+TypeError: ItemInputModal_Single.__init__() missing 1 required positional argument: 'save_stats'
+Traceback (most recent call last):
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 13, in <module>
+    from modules import *
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/__init__.py", line 1, in <module>
+    from . import (
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/modalclass.py", line 9, in <module>
+    from . import saveedit
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 8, in <module>
+    from .saveedit_modals import ItemInputModal_Single
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit_modals.py", line 22
+    async def on_submit(self, interaction: Interaction):
+                                                        ^
+IndentationError: unindent does not match any outer indentation level
+Traceback (most recent call last):
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 13, in <module>
+    from modules import *
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/__init__.py", line 1, in <module>
+    from . import (
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/modalclass.py", line 9, in <module>
+    from . import saveedit
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 8, in <module>
+    from .saveedit_modals import ItemInputModal_Single
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit_modals.py", line 22
+    async def on_submit(self, interaction: Interaction):
+TabError: inconsistent use of tabs and spaces in indentation
+Traceback (most recent call last):
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 13, in <module>
+    from modules import *
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/__init__.py", line 1, in <module>
+    from . import (
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/modalclass.py", line 9, in <module>
+    from . import saveedit
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 8, in <module>
+    from .saveedit_modals import ItemInputModal_Single
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit_modals.py", line 21
+    async def on_submit(self, interaction: Interaction):
+TabError: inconsistent use of tabs and spaces in indentation
+Traceback (most recent call last):
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 13, in <module>
+    from modules import *
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/__init__.py", line 1, in <module>
+    from . import (
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/modalclass.py", line 9, in <module>
+    from . import saveedit
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 8, in <module>
+    from .saveedit_modals import ItemInputModal_Single
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit_modals.py", line 21
+    async def on_submit(self, interaction: Interaction):
+TabError: inconsistent use of tabs and spaces in indentation
+Traceback (most recent call last):
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 13, in <module>
+    from modules import *
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/__init__.py", line 1, in <module>
+    from . import (
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/modalclass.py", line 9, in <module>
+    from . import saveedit
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 8, in <module>
+    from .saveedit_modals import ItemInputModal_Single
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit_modals.py", line 21
+    async def on_submit(self, interaction: Interaction):
+TabError: inconsistent use of tabs and spaces in indentation
+Traceback (most recent call last):
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 13, in <module>
+    from modules import *
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/__init__.py", line 1, in <module>
+    from . import (
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/modalclass.py", line 9, in <module>
+    from . import saveedit
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 8, in <module>
+    from .saveedit_modals import ItemInputModal_Single
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit_modals.py", line 21
+    async def on_submit(self, interaction: Interaction):
+TabError: inconsistent use of tabs and spaces in indentation
+Traceback (most recent call last):
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 13, in <module>
+    from modules import *
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/__init__.py", line 1, in <module>
+    from . import (
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/modalclass.py", line 9, in <module>
+    from . import saveedit
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 8, in <module>
+    from .saveedit_modals import ItemInputModal_Single
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit_modals.py", line 15
+    def __init__(self, itemname, currentvalue, maxvalue, save_stats):
+TabError: inconsistent use of tabs and spaces in indentation
+Traceback (most recent call last):
+  File "/home/pulse37/BCSFE_DiscordBot_v2/main.py", line 13, in <module>
+    from modules import *
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/__init__.py", line 1, in <module>
+    from . import (
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/modalclass.py", line 9, in <module>
+    from . import saveedit
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit.py", line 8, in <module>
+    from .saveedit_modals import ItemInputModal_Single
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit_modals.py", line 13, in <module>
+    class ItemInputModal_Single(ui.Modal):
+  File "/home/pulse37/BCSFE_DiscordBot_v2/modules/saveedit_modals.py", line 14, in ItemInputModal_Single
+    inputvalue = ui.TextInput(label=f"{self.itemname} 값 입력", style=discord.TextStyle.short, placeholder=f"현재값: {self.cv['cat_food']['Value']} | 최댓값: {self.mv}", default="")
+NameError: name 'self' is not defined
