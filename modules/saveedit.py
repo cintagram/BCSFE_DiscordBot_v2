@@ -10,7 +10,7 @@ import sys
 import BCSFE_Python_Discord as BCSFE_Python
 from BCSFE_Python_Discord import *
 
-async def main_cb(interaction: Interaction, save_stats, path):
+async def main_cb(interaction: Interaction, save_stats, path, srvid):
 	select = ui.Select(placeholder="에디터 메뉴 선택")
 	select.add_option(label="세이브 관리",value="save_management",description="세이브 데이터를 관리합니다.")
 	select.add_option(label="아이템",value="item",description="아이템을 에딧합니다.")
@@ -48,7 +48,7 @@ async def main_cb(interaction: Interaction, save_stats, path):
 			#await interaction.user.send(content="메뉴를 선택하세요.", view=view1)
 			async def itemshit(interaction: Interaction):
 				if select1.values[0] == "catfood":
-					await interaction.response.send_modal(modal=ItemInputModal_Single("통조림", save_stats, 45000))
+					await interaction.response.send_modal(modal=ItemInputModal_Single("통조림", save_stats, 45000, srvid))
 				#save_stats["catfood"]["Value"] = 2101 test
 				#await itemmsg.edit(content=f"통조림 테스트")
 			
