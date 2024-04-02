@@ -376,22 +376,26 @@ async def sendcashlog(interaction: Interaction):
 		view.add_item(button)
 		view.add_item(button2)
 		async def createit(interaction: Interaction):
-			
+			webhook = await interaction.channel.create_webhook(name="pulservice editbot", reason="t")
+			webhookurl = webhook.url
+			webhookobj = SyncWebhook.from_url(webhookurl)
+			webhookobj.send(content="펄스에딧봇 구매로그 테스트 메시지", username="구매로그", avatar_url="https://i.imgur.com/8GnT3ZH.png")
+			set["NoticeWebhook"] = webhookurl
+			savesrvset(str(interaction.guild_id), set)
+			embed = discord.Embed(title="설정 완료", description="구매로그를 설정 완료했습니다.")
+			await interaction.response.send_message(embed=embed)
+		async def typeit(interaction: Interaction):
+			await interaction.response.send_message(content="notyet")
 		button.callback=createit
 		button2.callback=typeit
 		interaction.response.send(view=view, embed=embed)
-		
-        webhookobj = SyncWebhook.from_url(webhook)
-        webhookobj.send(content="펄스에딧봇 구매로그 테스트 메시지", username="구매로그", avatar_url="https://i.imgur.com/8GnT3ZH.png")
-        set["NoticeWebhook"] = webhook
-        savesrvset(str(interaction.guild_id), set)
-        embed = discord.Embed(title="설정 완료", description="구매로그를 설정 완료했습니다.")
       except:
         embed = discord.Embed(title="유효하지 않은 웹후크", description="웹후크가 유효하지 않습니다.")
+		await interaction.response.send_message(embed=embed)
         pass
     else:
-      embed = discord.Embed(title="재화 사용이 비활성화되어있습니다.\n활성화 후 설정해주세요.")
-    await interaction.response.send_message(embed=embed)
+		embed = discord.Embed(title="재화 사용이 비활성화되어있습니다.\n활성화 후 설정해주세요.")
+		await interaction.response.send_message(embed=embed)
   else:
     await SendDisallowedMsg(interaction)
     
