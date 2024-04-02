@@ -16,7 +16,7 @@ The Most Advanced korean discord bot for bcsfe with vending system.
 TRAIN 보고있니 명심해라^^
 
 ## 세팅법
-다 만들고 작성
+다 만들고 작성 
 
 ## 개발자
 - BCSFE: fieryhenry, CintagramABP(me)
