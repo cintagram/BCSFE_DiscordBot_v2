@@ -11,3 +11,4 @@ from BCSFE_Python_Discord import *
 
 def CatFoodEdit(save_stats, value):
 	save_stats["cat_food"]["Value"] = value
+	return save_stats
