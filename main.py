@@ -191,7 +191,7 @@ async def sendbtn(interaction:Interaction):
                 async def select_callback(interaction:Interaction):
                   country = select.values[0]
                   print(country)
-                  await interaction.response.send_modal(TCInputModal(country))
+                  await interaction.response.send_modal(TCInputModal(country, interaction.guild_id))
                 select.callback=select_callback
                 await interaction.response.send_message(ephemeral=True,view=view,delete_after=30.0,content="30초 안에 국가코드를 선택해주세요.")
             typeselect.callback=type_cb
