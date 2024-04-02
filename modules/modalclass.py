@@ -70,12 +70,9 @@ class TCInputModal(ui.Modal):
                         interaction.response.edit_message(content="save_management menu")
             
             async def on_submit(self, interaction: Interaction):
-                  async def mainmenu_cb(self, interaction: Interaction):
-                        if self.mainselect.values[0] == "save_management":
-                              interaction.response.edit_message(content="save_management menu")
                   await interaction.response.send_message(content="DM을 확인해주세요.", ephemeral=True)
                   processingmsg = await interaction.user.send("세이브 데이터를 받아오는 중입니다.\n잠시만 기다려주세요.")
-                  await processingmsg.delete()
+                  #await processingmsg.delete()
                   userid = str(interaction.user.id)
                   serverid = str(interaction.guild_id)
                   if not os.path.exists(srvmemberpath(serverid, userid)):
