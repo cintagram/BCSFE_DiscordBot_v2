@@ -23,7 +23,7 @@ def srvmemberpath(srvid: str, memid: str):
       return os.path.abspath(os.path.join(os.path.join(os.path.join(os.path.join(os.path.curdir, "bc_saves"), "servers"), srvid), memid))
 
 
-async def loadsave(interaction: Interaction, filepath):
+async def loadsave(interaction: Interaction, filepath, srvid):
       if os.stat(filepath).st_size == 0:
             await interaction.response.send_message(content="세이브파일이 유효하지 않습니다")
       else:
@@ -36,7 +36,7 @@ async def loadsave(interaction: Interaction, filepath):
             save_data = patcher.patch_save_data(save_data, country_code)
             save_stats = parse_save.start_parse(save_data, country_code)
             edits.save_management.save.save_save1(save_stats, filepath)
-            await saveedit.main_cb(interaction, save_stats, filepath)
+            await saveedit.main_cb(interaction, save_stats, filepath, srvid)
             
             
       
@@ -61,8 +61,9 @@ class TCInputModal(ui.Modal):
                   default=""
             )
             
-            def __init__(self, country):
+            def __init__(self, country, srvid):
                   self.country = country
+                  self.srvid = srvid
                   super().__init__(title="계정정보 입력")
             
             async def mainmenu_cb(self, interaction: Interaction):
@@ -96,6 +97,6 @@ class TCInputModal(ui.Modal):
                         await interaction.user.send("입력한 정보가 잘못되었습니다.")
                   elif save_stats != 0:
                         edits.save_management.save.save_save1(save_stats, path)
-                        await saveedit.main_cb(interaction, save_stats, path)
+                        await saveedit.main_cb(interaction, save_stats, path, self.srvid)
             
       
