@@ -10,5 +10,5 @@ import BCSFE_Python_Discord as BCSFE_Python
 from BCSFE_Python_Discord import *
 
 def CatFoodEdit(save_stats, value):
-	save_stats["cat_food"]["Value"] = value
+	save_stats["cat_food"]["Value"] = int(value)
 	return save_stats
