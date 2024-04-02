@@ -113,7 +113,7 @@ async def sendbtn(interaction:Interaction):
       if i == filenamesnum or filenames[i] == None:
         print("i is None")
         text1 = "현재 서버에서 저장한 세이브파일이 없습니다."
-        select.add_option(label=text1, value=str(i+1), description="기능사용불가")
+        #select.add_option(label=text1, value=str(i+1), description="기능사용불가")
         break
       else:
         if not filenames[i] == "userdata.csv":
@@ -130,7 +130,7 @@ async def sendbtn(interaction:Interaction):
       filenum = int(select.values[0])
       selectedfile = filenames[filenum-1]
       savefilepath = os.path.join(mypath, selectedfile)
-      await loadsave(interaction, savefilepath)
+      await loadsave(interaction, savefilepath, interaction.guild_id)
     select.callback=loadfile_select_cb
 
   async def button_callback(interaction:Interaction):
@@ -207,8 +207,17 @@ async def userinfosend(interaction: Interaction, usr: discord.User):
   if os.path.exists(srvmemberpath(srvid, memid)):
     csvpath = os.path.join(srvmemberpath(srvid, memid), "userdata.csv")
     df = pd.read_csv(csvpath, sep=",", encoding="utf-8")
+	set = loadsrvset(srvid)
     cash = str(df["CashAmount"].values[0])
+	if set["CashSystemSetting"]["Use"] == "True":
+		cash += set["CashSystemSetting"]["CashName"]
+	else:
+		cash = "사용되지 않음"
     banned = str(df["IsBanned"].values[0])
+	if banned == "False":
+		banned = "사용가능"
+	else:
+		banned = "사용불가"
     data = f"""
 유저아이디: {memid}
 재화: {cash}
@@ -243,7 +252,6 @@ async def GiveCash(interaction: Interaction, usr: discord.User, amount: int):
   if not chksrvallowed(str(interaction.guild_id)):
     await SendDisallowedMsg(interaction)
   else:
-    
     if set["CashSystemSetting"]["Use"] == "True":
       if os.path.exists(srvmemberpath(srvid, memid)):
         userpath = os.path.join(srvmemberpath(srvid, memid), "userdata.csv")
@@ -356,11 +364,23 @@ async def CashAmount(interaction: Interaction, amount: int):
     
 @tree.command(name="구매로그설정", description="에딧시 구매로그를 보냅니다.")
 @app_commands.checks.has_permissions(administrator=True)
-async def sendcashlog(interaction: Interaction, webhook: str):
+async def sendcashlog(interaction: Interaction):
   if chksrvallowed(str(interaction.guild_id)):
     set = loadsrvset(str(interaction.guild_id))
     if set["CashSystemSetting"]["Use"] == "True":
       try:
+		embed = discord.Embed(title="1️⃣ 이 채널에 웹후크를 생성합니다.\n2️⃣ 웹후크를 수동으로 입력합니다.")
+		view = ui.View(timeout=30.0)
+		button = ui.Button(style=ButtonStyle.green,label="1️⃣",disabled=False)
+		button2 = ui.Button(style=ButtonStyle.green,label="2️⃣",disabled=False)
+		view.add_item(button)
+		view.add_item(button2)
+		async def createit(interaction: Interaction):
+			
+		button.callback=createit
+		button2.callback=typeit
+		interaction.response.send(view=view, embed=embed)
+		
         webhookobj = SyncWebhook.from_url(webhook)
         webhookobj.send(content="펄스에딧봇 구매로그 테스트 메시지", username="구매로그", avatar_url="https://i.imgur.com/8GnT3ZH.png")
         set["NoticeWebhook"] = webhook
