@@ -18,7 +18,7 @@ class ItemInputModal_Single(ui.Modal):
         self.mv = maxvalue
         self.sv = save_stats
         super().__init__(title="값 입력")
-        
-    async def on_submit(self, interaction: Interaction):
-        saveeditapi.CatFoodEdit(self.sv, self.inputvalue.value)
-        await interaction.user.send(content=f"Set CF to {self.inputvalue}")
+
+	async def on_submit(self, interaction: Interaction):
+		saveeditapi.CatFoodEdit(self.sv, self.inputvalue.value)
+		await interaction.user.send(content=f"Set CF to {self.inputvalue.value}")
